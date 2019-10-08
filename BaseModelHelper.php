@@ -9,6 +9,18 @@ namespace denis303\codeigniter4;
 abstract class BaseModelHelper
 {
 
+    public static function findByPk($modelClass, $id)
+    {
+        $model = new $modelClass;
+
+        if (!$id)
+        {
+            return null;
+        }
+
+        return $model->find($id);
+    }
+
     public static function refreshEntity($modelClass, &$entity, &$error = null)
     {
         $primaryKey = static::getEntityPrimaryKey($modelClass, $entity, $error);

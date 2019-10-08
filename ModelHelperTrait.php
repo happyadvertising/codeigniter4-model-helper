@@ -9,6 +9,11 @@ namespace denis303\codeigniter4;
 trait ModelHelperTrait
 {
 
+    public static function findByPk($id)
+    {
+        return ModelHelper::findByPk(get_called_class(), $id);
+    }
+
     public static function refreshEntity(&$entity, &$error = null)
     {
         return ModelHelper::refreshEntity(get_called_class(), $entity, $error);
