@@ -95,7 +95,7 @@ abstract class BaseModelHelper
             $model->protect(false);
         }
 
-        $saved = !$model->save($user);
+        $saved = !$model->save($entity);
 
         if (!$protect)
         {
@@ -136,7 +136,7 @@ abstract class BaseModelHelper
     
         if ($save)
         {
-            $id = static::saveEntity($modelClass, $entity, $protect, $error);
+            $id = static::saveEntity($modelClass, $return, $protect, $error);
        
             if (!$id)
             {
