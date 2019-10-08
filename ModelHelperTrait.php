@@ -34,12 +34,12 @@ trait ModelHelperTrait
         return ModelHelper::saveEntity(get_called_class(), $entity, $protect, $error);
     }
 
-    public static function createEntity($modelClass, $data = [], $save = true, $protect = true, &$error = null)
+    public static function createEntity($data = [], $save = true, $protect = true, &$error = null)
     {
         return ModelHelper::createEntity(get_called_class(), $data, $save, $protect, $error);
     }
 
-    public static function getEntity($modelClass, array $where, bool $create = false, array $params = [], bool $update = false, &$error = null)
+    public static function getEntity(array $where, bool $create = false, array $params = [], bool $update = false, &$error = null)
     {
         return ModelHelper::getEntity(get_called_class(), $where, $create, $params, $update, $error); 
     }
