@@ -39,7 +39,7 @@ trait ModelHelperTrait
         return ModelHelper::saveEntity(get_called_class(), $entity, $protect, $error);
     }
 
-    public static function createEntity($data = [], $save = true, $protect = true, &$error = null)
+    public static function createEntity($data = [], $save = false, $protect = true, &$error = null)
     {
         return ModelHelper::createEntity(get_called_class(), $data, $save, $protect, $error);
     }

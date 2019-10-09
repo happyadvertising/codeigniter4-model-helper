@@ -133,7 +133,7 @@ abstract class BaseModelHelper
         return $model->getInsertID();
     }
 
-    public static function createEntity($modelClass, $data = [], $save = true, $protect = true, &$error = null)
+    public static function createEntity($modelClass, $data = [], $save = false, $protect = true, &$error = null)
     {
         $model = new $modelClass;
         
