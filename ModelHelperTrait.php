@@ -19,9 +19,9 @@ trait ModelHelperTrait
         return ModelHelper::refreshEntity(get_called_class(), $entity, $error);
     }
 
-    public static function getEntityField($entity, $field)
+    public static function entityField($entity, $field)
     {
-        return ModelHelper::getEntityField(get_called_class(), $entity, $field);
+        return ModelHelper::entityField(get_called_class(), $entity, $field);
     }
 
     public static function setEntityField(&$entity, $field, $value)
@@ -29,9 +29,9 @@ trait ModelHelperTrait
         return ModelHelper::setEntityField(get_called_class(), $entity, $field, $value);
     }
 
-    public static function getEntityPrimaryKey($entity, &$error = null)
+    public static function entityPrimaryKey($entity, &$error = null)
     {
-        return ModelHelper::getEntityPrimaryKey(get_called_class(), $entity, $error);
+        return ModelHelper::entityPrimaryKey(get_called_class(), $entity, $error);
     }
 
     public static function saveEntity($entity, $protect = true, &$error = null)

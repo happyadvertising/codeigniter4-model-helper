@@ -23,7 +23,7 @@ abstract class BaseModelHelper
 
     public static function refreshEntity($modelClass, &$entity, &$error = null)
     {
-        $primaryKey = static::getEntityPrimaryKey($modelClass, $entity, $error);
+        $primaryKey = static::entityPrimaryKey($modelClass, $entity, $error);
 
         if (!$primaryKey)
         {
@@ -44,7 +44,7 @@ abstract class BaseModelHelper
         return true;
     }
 
-    public static function getEntityField($modelClass, $entity, $field)
+    public static function entityField($modelClass, $entity, $field)
     {
         $model = new $modelClass;
 
@@ -80,13 +80,13 @@ abstract class BaseModelHelper
         }
     }
 
-    public static function getEntityPrimaryKey($modelClass, $entity, &$error = null)
+    public static function entityPrimaryKey($modelClass, $entity, &$error = null)
     {
         $model = new $modelClass;
 
         $primaryKey = $model->primaryKey;
 
-        $return = static::getEntityField($modelClass, $entity);
+        $return = static::entityField($modelClass, $entity);
 
         if (!$return === null)
         {
@@ -183,7 +183,7 @@ abstract class BaseModelHelper
 
                 if ($updated)
                 {
-                    $id = static::getEntityPrimaryKey($modelClass, $row, $error);
+                    $id = static::entityPrimaryKey($modelClass, $row, $error);
 
                     if (!$id)
                     {
