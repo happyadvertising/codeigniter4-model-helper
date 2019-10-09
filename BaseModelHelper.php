@@ -84,11 +84,9 @@ abstract class BaseModelHelper
     {
         $model = new $modelClass;
 
-        $primaryKey = $model->primaryKey;
+        $return = static::entityField($modelClass, $entity, $model->primaryKey);
 
-        $return = static::entityField($modelClass, $entity);
-
-        if (!$return === null)
+        if (!$return)
         {
             $error = 'Primary key not defined.';
 
