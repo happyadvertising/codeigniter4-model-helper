@@ -57,7 +57,7 @@ abstract class BaseModelHelper
         }
         else
         {
-            if (property_exists($entity, $primaryKey))
+            if (property_exists($entity, $model->primaryKey))
             {
                 return $entity->$field;
             }
