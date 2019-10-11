@@ -6,6 +6,8 @@
  */
 namespace denis303\codeigniter4;
 
+use CodeIgniter\Entity;
+
 abstract class BaseModelHelper
 {
 
@@ -57,6 +59,11 @@ abstract class BaseModelHelper
         }
         else
         {
+            if ($entity instanceof Entity)
+            {
+                return $entity->$field;
+            }
+
             if (property_exists($entity, $model->primaryKey))
             {
                 return $entity->$field;
