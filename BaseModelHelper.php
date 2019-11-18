@@ -112,14 +112,16 @@ abstract class BaseModelHelper
             $model->protect(false);
         }
 
-        $saved = !$model->save($entity);
+        $id = $modelClass::entityPrimaryKey($entity);
+
+        $saved = $model->save($entity);
 
         if (!$protect)
         {
             $model->protect(true);
         }
 
-        if ($saved)
+        if (!$saved)
         {
             $errors = $model->errors();
 
@@ -135,7 +137,12 @@ abstract class BaseModelHelper
             return false;
         }
 
-        return $model->getInsertID();
+        if (!$id)
+        {
+            return $model->getInsertID();
+        }
+
+        return $id;
     }
 
     public static function createEntity($modelClass, $data = [], $save = false, $protect = true, &$error = null)
