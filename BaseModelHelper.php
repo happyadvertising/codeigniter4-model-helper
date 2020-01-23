@@ -151,11 +151,23 @@ abstract class BaseModelHelper
         
         $entityClass = $model->returnType;
 
-        $return = new $entityClass;
-
-        foreach($data as $key => $value)
+        if ($entityClass == 'array')
         {
-            $return->$key = $value;
+            $return = [];
+
+            foreach($data as $key => $value)
+            {
+                $return[$key] = $value;
+            }
+        }
+        else
+        {
+            $return = new $entityClass;
+
+            foreach($data as $key => $value)
+            {
+                $return->$key = $value;
+            }            
         }
     
         if ($save)
