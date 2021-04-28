@@ -187,42 +187,44 @@ abstract class BaseModelHelper
     {
         $model = new $modelClass;
 
-        $row = $model->where($where)->first();
+        foreach($where as $key => $value) {
 
-        if ($row)
-        {
-            if ($update)
+            $row = $model->find()->where($key, $value);
+            if ($row)
             {
-                $updated = false;
-
-                foreach($params as $key => $value)
+                if ($update)
                 {
-                    if ($row->$key != $value)
+                    $updated = false;
+
+                    foreach($params as $key => $value)
                     {
-                        $row->$key = $value;
-                    
-                        $updated = true;
+                        if ($row->$key != $value)
+                        {
+                            $row->$key = $value;
+
+                            $updated = true;
+                        }
+                    }
+
+                    if ($updated)
+                    {
+                        $id = static::entityPrimaryKey($modelClass, $row, $error);
+
+                        if (!$id)
+                        {
+                            return false;
+                        }
+
+                        $model->protect(false);
+
+                        $result = $model->update($id, $params);
+
+                        $model->protect(true);
                     }
                 }
 
-                if ($updated)
-                {
-                    $id = static::entityPrimaryKey($modelClass, $row, $error);
-
-                    if (!$id)
-                    {
-                        return false;
-                    }
-             
-                    $model->protect(false);
-
-                    $result = $model->update($id, $params);
-
-                    $model->protect(true);
-                }
+                return $row;
             }
-
-            return $row;
         }
 
         if (!$create)
@@ -246,9 +248,10 @@ abstract class BaseModelHelper
             // nothing to do
         }
 
-        $row = $model->where($where)->first();
-
-        return $row;
+        foreach($where as $key => $value) {
+            return $model->find()->where($key, $value);
+            break;
+        }
     }
 
 }
