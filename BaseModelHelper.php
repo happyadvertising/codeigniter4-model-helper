@@ -189,7 +189,7 @@ abstract class BaseModelHelper
 
         foreach($where as $key => $value) {
 
-            $row = $model->find()->where($key, $value);
+            $row = $model->where($key, $value)->find();
             if ($row)
             {
                 if ($update)
@@ -249,7 +249,7 @@ abstract class BaseModelHelper
         }
 
         foreach($where as $key => $value) {
-            return $model->find()->where($key, $value);
+            return $model->where($key, $value)->find();
             break;
         }
     }
